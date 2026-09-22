@@ -1,0 +1,95 @@
+<resources>
+    <string name="app_name">LittleWhale</string>
+    <string name="a11y_description">允许 DSH 读取屏幕上文本及其精确位置以减少端侧 OCR 调用</string>
+
+    <string name="button_cancel">取消</string>
+    <string name="button_confirm">确定</string>
+
+    <string name="host_status_idle">DSH host 未运行</string>
+    <string name="host_status_installing">正在解压 DSH host (%1$d / %2$d)</string>
+    <string name="host_status_starting">正在启动 DSH host</string>
+    <string name="host_status_running">host 正在运行</string>
+    <string name="host_status_failed">host 启动失败: %1$s</string>
+    <string name="host_channel_name">DSH host</string>
+    <string name="host_channel_description">应用退到后台后继续保活 DSH host</string>
+    <string name="host_notification_title">LittleWhale</string>
+    <string name="host_notification_text">DSH host 正在运行</string>
+
+    <string name="settings_title">设置</string>
+    <string name="settings_back">返回</string>
+    <string name="settings_more">更多</string>
+    <string name="settings_restart_host">重启 DSH host</string>
+    <string name="settings_restart_host_summary">让工作区与网络的改动生效</string>
+
+    <string name="settings_section_appearance">外观</string>
+    <string name="settings_theme_follow_system">跟随系统</string>
+    <string name="settings_theme_light">浅色</string>
+    <string name="settings_theme_dark">深色</string>
+    <string name="settings_monet">Monet 颜色</string>
+    <string name="settings_monet_summary">开启后使用 Monet 动态配色</string>
+    <string name="settings_monet_key_color">Monet Key Color</string>
+    <string name="settings_monet_key_color_summary">设置 Monet 强调色</string>
+    <string name="settings_monet_palette_style">Monet Palette Style</string>
+    <string name="settings_monet_palette_style_summary">设置 Monet 调色板风格</string>
+    <string name="settings_monet_color_spec">Monet Color Spec</string>
+    <string name="settings_monet_color_spec_summary">设置 Monet 色彩规格</string>
+    <string name="settings_squircle">圆角矩形</string>
+    <string name="settings_squircle_summary">在圆角 UI 元素上使用平滑的圆角矩形</string>
+
+    <string name="settings_section_navigation">导航</string>
+    <string name="settings_transition">过渡风格</string>
+    <string name="settings_transition_summary">页面过渡动画样式</string>
+    <string name="settings_transition_miuix">Miuix</string>
+    <string name="settings_transition_aosp">AOSP</string>
+    <string name="settings_swipe_back">横滑返回</string>
+    <string name="settings_swipe_back_summary">滑动已推入的页面以返回</string>
+
+    <string name="settings_section_channel">特权通道</string>
+    <string name="settings_channel_reading">读取中...</string>
+    <string name="settings_channel_connected">已连接: %1$s, uid %2$d</string>
+    <string name="settings_channel_disconnected">未连接 (%1$s)</string>
+    <string name="settings_channel_route">%1$s: %2$s</string>
+    <string name="settings_channel_state_allowed">已授权</string>
+    <string name="settings_channel_state_denied">未授权</string>
+    <string name="settings_channel_state_unknown">未检测</string>
+    <string name="settings_channel_state_stopped">未运行</string>
+    <string name="settings_channel_connect">连接</string>
+    <string name="settings_channel_connecting">连接中...</string>
+
+    <string name="settings_section_accessibility">无障碍</string>
+    <string name="settings_accessibility">允许 DSH 通过无障碍服务读取屏幕内容</string>
+    <string name="settings_accessibility_summary">启用后, 模型直接能读到屏幕上每个控件的文字与精确位置</string>
+    <string name="settings_accessibility_manual">跳转到无障碍设置</string>
+    <string name="settings_accessibility_manual_summary">手动启用 LittleWhale 的无障碍服务</string>
+
+    <string name="settings_section_screenshot">截图</string>
+    <string name="settings_screenshot_budget">截图预算</string>
+    <string name="settings_screenshot_budget_summary">将截图缩放到这个像素数以内再交给模型</string>
+    <string name="settings_budget_low">低 (%1$d)</string>
+    <string name="settings_budget_default">默认 (%1$d)</string>
+    <string name="settings_budget_high">高 (%1$d)</string>
+    <string name="settings_screenshot_bytes">截图字节预算</string>
+    <string name="settings_screenshot_bytes_summary">PNG 超过 %1$d 字节就再缩一次, 这是应用这一半的上限; 路由自己的上限是 settings.yaml 里的 imageMaxBytes, 超过它的图会让模型请求失败</string>
+    <string name="settings_screenshot_bytes_dialog">单位是 KiB, 打字可以给到 %2$d; 超过滑块上限 %1$d 的值要先把 settings.yaml 里的 imageMaxBytes 一起调上去</string>
+
+    <string name="settings_section_ocr">OCR</string>
+    <string name="settings_ocr_backend">计算单元: %1$s</string>
+    <string name="settings_ocr_probe">自检</string>
+    <string name="settings_ocr_probe_busy">自检...</string>
+
+    <string name="settings_section_workspace">工作区</string>
+    <string name="settings_workspace_grant">授权所有文件访问</string>
+    <string name="settings_workspace_grant_summary">所有文件访问权限是 host 能按真实路径读写 /sdcard 的前提, 未授权时工作区只能在应用的沙盒目录中\n当前: %1$s</string>
+    <string name="settings_workspace_kind_shared">共享存储</string>
+    <string name="settings_workspace_kind_media">媒体目录</string>
+    <string name="settings_workspace_kind_sandbox">应用沙盒</string>
+    <string name="settings_workspace_kind_none">host 未启动</string>
+
+    <string name="settings_section_network">网络</string>
+    <string name="settings_lan">开放到局域网</string>
+    <string name="settings_lan_summary">把 GUI 绑定到所有网卡, 修改后需要重启 host</string>
+    <string name="settings_share">分享</string>
+    <string name="settings_copy">复制</string>
+    <string name="settings_url_copied">已复制 URL</string>
+    <string name="settings_share_chooser">分享 DSH 的地址</string>
+</resources>

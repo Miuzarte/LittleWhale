@@ -1,0 +1,95 @@
+<resources>
+    <string name="app_name">LittleWhale</string>
+    <string name="a11y_description">Lets DSH read the text on a screen and exactly where it is, which means fewer on-device OCR calls</string>
+
+    <string name="button_cancel">Cancel</string>
+    <string name="button_confirm">OK</string>
+
+    <string name="host_status_idle">Host is not running</string>
+    <string name="host_status_installing">Unpacking the DSH host (%1$d / %2$d)</string>
+    <string name="host_status_starting">Starting the DSH host</string>
+    <string name="host_status_running">Host is running</string>
+    <string name="host_status_failed">Host failed: %1$s</string>
+    <string name="host_channel_name">DSH host</string>
+    <string name="host_channel_description">Keeps the DSH host reachable while the app is in the background</string>
+    <string name="host_notification_title">LittleWhale</string>
+    <string name="host_notification_text">The DSH host is running</string>
+
+    <string name="settings_title">Settings</string>
+    <string name="settings_back">Back</string>
+    <string name="settings_more">More</string>
+    <string name="settings_restart_host">Restart DSH host</string>
+    <string name="settings_restart_host_summary">Applies the workspace and network changes</string>
+
+    <string name="settings_section_appearance">Appearance</string>
+    <string name="settings_theme_follow_system">Follow system</string>
+    <string name="settings_theme_light">Light</string>
+    <string name="settings_theme_dark">Dark</string>
+    <string name="settings_monet">Monet colors</string>
+    <string name="settings_monet_summary">Use Monet dynamic colors</string>
+    <string name="settings_monet_key_color">Monet Key Color</string>
+    <string name="settings_monet_key_color_summary">Set the Monet accent color</string>
+    <string name="settings_monet_palette_style">Monet Palette Style</string>
+    <string name="settings_monet_palette_style_summary">Set the Monet palette style</string>
+    <string name="settings_monet_color_spec">Monet Color Spec</string>
+    <string name="settings_monet_color_spec_summary">Set the Monet color spec</string>
+    <string name="settings_squircle">Squircle corners</string>
+    <string name="settings_squircle_summary">Use smooth rounded rectangles on rounded UI elements</string>
+
+    <string name="settings_section_navigation">Navigation</string>
+    <string name="settings_transition">Transition style</string>
+    <string name="settings_transition_summary">Animation style for page transitions</string>
+    <string name="settings_transition_miuix">Miuix</string>
+    <string name="settings_transition_aosp">AOSP</string>
+    <string name="settings_swipe_back">Swipe back</string>
+    <string name="settings_swipe_back_summary">Swipe a pushed page to go back</string>
+
+    <string name="settings_section_channel">Privileged channel</string>
+    <string name="settings_channel_reading">Reading...</string>
+    <string name="settings_channel_connected">Connected: %1$s, uid %2$d</string>
+    <string name="settings_channel_disconnected">Not connected (%1$s)</string>
+    <string name="settings_channel_route">%1$s: %2$s</string>
+    <string name="settings_channel_state_allowed">allowed</string>
+    <string name="settings_channel_state_denied">not allowed</string>
+    <string name="settings_channel_state_unknown">not checked</string>
+    <string name="settings_channel_state_stopped">not running</string>
+    <string name="settings_channel_connect">Connect</string>
+    <string name="settings_channel_connecting">Connecting...</string>
+
+    <string name="settings_section_accessibility">Accessibility</string>
+    <string name="settings_accessibility">Let DSH read the screen through the accessibility service</string>
+    <string name="settings_accessibility_summary">Once on, the model reads the text and the exact position of every control on the screen</string>
+    <string name="settings_accessibility_manual">Open accessibility settings</string>
+    <string name="settings_accessibility_manual_summary">Enable the LittleWhale accessibility service by hand</string>
+
+    <string name="settings_section_screenshot">Screenshots</string>
+    <string name="settings_screenshot_budget">Screenshot budget</string>
+    <string name="settings_screenshot_budget_summary">Scale a screenshot to this many pixels before the model sees it</string>
+    <string name="settings_budget_low">Low (%1$d)</string>
+    <string name="settings_budget_default">Default (%1$d)</string>
+    <string name="settings_budget_high">High (%1$d)</string>
+    <string name="settings_screenshot_bytes">Screenshot byte budget</string>
+    <string name="settings_screenshot_bytes_summary">Shrink a PNG further while it is over %1$d bytes, which is the ceiling this app sets; the route has its own limit in settings.yaml (imageMaxBytes), and a picture over that fails the model request</string>
+    <string name="settings_screenshot_bytes_dialog">In KiB, and typing goes up to %2$d; a value over the slider top %1$d needs imageMaxBytes raised in settings.yaml first</string>
+
+    <string name="settings_section_ocr">OCR</string>
+    <string name="settings_ocr_backend">Runs on: %1$s</string>
+    <string name="settings_ocr_probe">Self check</string>
+    <string name="settings_ocr_probe_busy">Checking...</string>
+
+    <string name="settings_section_workspace">Workspace</string>
+    <string name="settings_workspace_grant">Grant all files access</string>
+    <string name="settings_workspace_grant_summary">All files access is what lets the host read and write /sdcard by real path; without it the workspace stays inside the app sandbox\nCurrently: %1$s</string>
+    <string name="settings_workspace_kind_shared">shared storage</string>
+    <string name="settings_workspace_kind_media">media directory</string>
+    <string name="settings_workspace_kind_sandbox">app sandbox</string>
+    <string name="settings_workspace_kind_none">host not started</string>
+
+    <string name="settings_section_network">Network</string>
+    <string name="settings_lan">Open to the LAN</string>
+    <string name="settings_lan_summary">Bind the GUI to every network interface, which needs a host restart</string>
+    <string name="settings_share">Share</string>
+    <string name="settings_copy">Copy</string>
+    <string name="settings_url_copied">URL copied</string>
+    <string name="settings_share_chooser">Share the DSH address</string>
+</resources>

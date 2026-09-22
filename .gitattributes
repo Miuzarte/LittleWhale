@@ -1,0 +1,10 @@
+# Normalize line endings on checkout; keep the wrapper scripts LF so they stay
+# executable on Linux/macOS CI.
+* text=auto eol=lf
+*.bat text eol=crlf
+*.jar binary
+*.png binary
+*.jpg binary
+*.webp binary
+*.so binary
+*.keystore binary

@@ -1,0 +1,8 @@
+{
+  "name": "sharp",
+  "version": "0.0.0-littlewhale",
+  "private": true,
+  "description": "LittleWhale's stand-in for sharp: enough of its API for the attachment store to verify a PNG on a device where libvips cannot run",
+  "main": "index.js",
+  "license": "MIT"
+}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- What the service is allowed to do, which is deliberately the whole of what reading a tree
+     needs: the window list (flagRetrieveInteractiveWindows, since a window the service cannot
+     retrieve is not in it at all), stable view ids for the ones that have them, and the views
+     apps mark as not important - those are often exactly the clickable rows -->
+<accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
+    android:accessibilityEventTypes="typeWindowStateChanged|typeWindowContentChanged|typeViewFocused|typeViewScrolled"
+    android:accessibilityFeedbackType="feedbackGeneric"
+    android:accessibilityFlags="flagRetrieveInteractiveWindows|flagReportViewIds|flagIncludeNotImportantViews"
+    android:canRetrieveWindowContent="true"
+    android:description="@string/a11y_description"
+    android:notificationTimeout="100" />

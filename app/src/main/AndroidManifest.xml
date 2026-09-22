@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- The host binds loopback, and a later setting will bind another interface so other
+         devices can reach the GUI, so INTERNET covers both -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- The dsh host and the WebView both have to survive the app going to the background -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!-- The workspace has to be a real path: dsh runs as a Node child process and works in
+         directories, and a storage-access-framework grant only reaches this process's
+         ContentResolver. Without this the workspace falls back to the app's own media
+         directory, which needs no permission but is not the shared /sdcard the user browses.
+         Granted by hand in system settings, so the ScopedStorage lint is expected -->
+    <uses-permission
+        android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.LittleWhale"
+        android:usesCleartextTraffic="true">
+
+        <!-- The QNN runtime talks to the DSP through fastrpc, and libQnnHtpV73Stub.so names
+             libcdsprpc.so as a dependency. Since Android 12 the app linker namespace does not
+             search /vendor/lib64, and libcdsprpc.so is one of the few vendor libraries published
+             for apps, so this declaration is what puts it in reach. Without it QnnDevice_create
+             fails with no fastrpc or dsp log to explain why, which is the single most confusing
+             way this feature breaks. required=false because the rest of the app runs fine
+             without it - OCR is the only consumer and it falls back to the CPU -->
+        <uses-native-library
+            android:name="libcdsprpc.so"
+            android:required="false" />
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.LittleWhale"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- specialUse: the host is a long-running local server for an agent, which no other
+             foreground service type describes -->
+        <service
+            android:name=".host.DshHostService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="runs the dsh agent host and its Web GUI in the background" />
+        </service>
+
+        <!-- How a privileged process returns its binder to this app: it can neither bind to a
+             service here nor be handed one, but it can call a provider this app owns. Exported
+             because the caller is not this app, and guarded inside by the caller's uid plus a one
+             time token, so no other app can attach a privileged process of its own -->
+        <provider
+            android:name=".channel.LwBootstrapProvider"
+            android:authorities="${applicationId}.lw.bootstrap"
+            android:enabled="true"
+            android:exported="true"
+            android:multiprocess="false" />
+
+        <!-- Reading what is on a screen, so a caller can name a thing instead of measuring it off
+             a picture. Declared here rather than reached over the channel because an accessibility
+             service belongs to the app that declares it: the system delivers its callbacks into
+             this process, so the tree is readable without a binder and without root.
+             It reads the whole device - that is what the service is - so it stays opt in, and the
+             settings page can turn it off again -->
+        <service
+            android:name=".channel.LwAccessibility"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/lw_accessibility" />
+        </service>
+
+        <!-- Shizuku's own provider, which is how the Shizuku app hands this app the server binder -->
+        <provider
+            android:name="rikka.shizuku.ShizukuProvider"
+            android:authorities="${applicationId}.shizuku"
+            android:enabled="true"
+            android:exported="true"
+            android:multiprocess="false" />
+    </application>
+
+    <queries>
+        <!-- Shizuku's app is not visible to this one otherwise, on Android 11 and later -->
+        <package android:name="moe.shizuku.privileged.api" />
+        <!-- What stops every other package being invisible on Android 11 and later: the launcher
+             intent is the question "what can a person start", which is narrower than the
+             QUERY_ALL_PACKAGES permission on purpose - it is a declaration, not a permission -->
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+    </queries>
+
+</manifest>

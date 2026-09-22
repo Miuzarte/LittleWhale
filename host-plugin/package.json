@@ -1,0 +1,11 @@
+{
+  "name": "littlewhale-channel",
+  "version": "0.0.0",
+  "private": true,
+  "description": "The dsh tools that reach LittleWhale's privileged channel",
+  "type": "module",
+  "main": "index.mjs",
+  "exports": {
+    ".": "./index.mjs"
+  }
+}
